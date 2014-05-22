@@ -5,7 +5,7 @@ VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{5DDB1F08-31F4-4ADE-8FD8-59E3A44FCA62}"
 	ProjectSection(SolutionItems) = preProject
-		SqlQuery_1.sql = SqlQuery_1.sql
+		petitPateSQLQuery1.sql = petitPateSQLQuery1.sql
 	EndProjectSection
 EndProject
 Global
