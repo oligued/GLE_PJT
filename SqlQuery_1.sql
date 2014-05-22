@@ -65,4 +65,7 @@ create table Reservation (
 
 
 
-insert into Movie_category (IdMovieCategory, Title) values (1, 'drame')
+insert into Movie_category (IdMovieCategory, Title) values (1, 'drame');
+insert into Movie_category (IdMovieCategory, Title) values (2, 'policier');
+insert into Movie_category (IdMovieCategory, Title) values (3, 'mauvaise comédie française');
+insert into Movie_category (IdMovieCategory, Title) values (4, 'incroyable');
