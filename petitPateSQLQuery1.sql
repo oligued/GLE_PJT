@@ -20,7 +20,7 @@ create table Movie (
 	IdFilm int not null identity (1,1) primary key,
 	Title nvarchar(50) not null,
 	Synopsis nvarchar(100) not null,
-	Producer DateTime not null,
+	Producer smallDateTime not null,
 	Poster image,
 	Category int not null references Movie_Category,
 );
@@ -69,24 +69,44 @@ insert into Movie_category (Title) values ('policier');
 insert into Movie_category (Title) values ('mauvaise comédie française');
 insert into Movie_category (Title) values ('incroyable');
 
-insert into Movie (Title, Synopsis, Producer, Category) values (
+insert into Movie (
+ [Title],
+ [Synopsis],
+ [Producer],
+ [Poster],
+ [Category]
+)
+select
 'Dans la peau de John Malkovich',
 '"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
  tempor incididunt ut labore et dolore magna aliqua. Econsectetur 
 adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore 
 magna aliqua."',
 'Monsieur Jean LeProd',
-4
-);
-insert into Movie (Title, Synopsis, Producer, Category) values (
+ *,
+ 1
+ from openrowset(bulk N'E:\TEMP\GLE_PJT\image1.jpg', single_blob) as Poster
+ GO
+
+
+insert into Movie (
+ [Title],
+ [Synopsis],
+ [Producer],
+ [Poster],
+ [Category]
+)
+select
 '96 heures',
 '"Carré est le patron de la BRB (Brigade de Répression du Banditisme). 3 
 ans plus tôt, il a fait tomber un grand truand, Kancel. Aujourd’hui, à 
 la faveur d’une extraction, Kancel kidnappe le flic. Il a 96 heures pour
  lui soutirer une seule information : savoir qui l’a balancé."',
  'Frédéric Schoendoerffer',
+ *,
  2
-);
+ from openrowset(bulk N'E:\TEMP\GLE_PJT\image2.jpg', single_blob) as Poster
+ GO
 
 insert into Emplacement (Name, Adresse, Phone) values ('Vevey','Rue du milieu 1','0211231111');
 insert into Emplacement (Name, Adresse, Phone) values ('Lausanne','Route de genève 10','0214562222');
@@ -97,8 +117,8 @@ insert into Cinema (Name, Nb_Places, Emplacement) values ('Rex 2',250,2);
 insert into Cinema (Name, Nb_Places, Emplacement) values ('Rex 3',300,3);
 insert into Cinema (Name, Nb_Places, Emplacement) values ('Rex 4',200,1);
 
-insert into Projection (MovieId, CinemaId, DateHeure) values (1,2,'2014-02-13 20:45:00');
-insert into Projection (LangVersion, MovieId, CinemaId, DateHeure) values ('VF',2,3,'2014-02-13 20:45:00');
+insert into Projection (MovieId, CinemaId, DateHeure) values (1,2,'13/02/2014 20:45');
+insert into Projection (LangVersion, MovieId, CinemaId, DateHeure) values ('VF',2,3,'13/02/2014 20:45');
 
 insert into UserTable (UserLogin, UserPassword, FirstName, LastName, IsAdmin) values ('Cinephile1234','1234','George','Baumann',1);
 insert into UserTable (UserLogin, UserPassword, FirstName, LastName, IsAdmin) values ('Bob','1234','Dider','Burkhalter',0);
