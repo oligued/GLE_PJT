@@ -9,6 +9,6 @@ namespace PortableLib
     public class Class1
     {
 
-        //test synchro GIT
+        //test synchro GIT -> OK
     }
 }
