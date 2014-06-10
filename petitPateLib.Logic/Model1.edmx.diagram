@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="c38649001a9646bb900d8d45fa114411" Name="Diagram1">
+        <EntityTypeShape EntityType="petitPateBDDModel.Cinema" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="petitPateBDDModel.Emplacement" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="petitPateBDDModel.Movie" Width="1.5" PointX="3" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="petitPateBDDModel.Movie_category" Width="1.5" PointX="0.75" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="petitPateBDDModel.Projection" Width="1.5" PointX="5.25" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="petitPateBDDModel.Reservation" Width="1.5" PointX="7.5" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="petitPateBDDModel.UserTable" Width="1.5" PointX="5.25" PointY="5" IsExpanded="true" />
+        <AssociationConnector Association="petitPateBDDModel.FK__Cinema__Emplacem__173876EA" ManuallyRouted="false" />
+        <AssociationConnector Association="petitPateBDDModel.FK__Projectio__Cinem__1BFD2C07" ManuallyRouted="false" />
+        <AssociationConnector Association="petitPateBDDModel.FK__Movie__Category__1273C1CD" ManuallyRouted="false" />
+        <AssociationConnector Association="petitPateBDDModel.FK__Projectio__Movie__1B0907CE" ManuallyRouted="false" />
+        <AssociationConnector Association="petitPateBDDModel.FK__Reservati__Proje__21B6055D" ManuallyRouted="false" />
+        <AssociationConnector Association="petitPateBDDModel.FK__Reservati__UserI__22AA2996" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

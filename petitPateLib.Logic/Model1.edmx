@@ -1,0 +1,469 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="petitPateBDDModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Cinema">
+          <Key>
+            <PropertyRef Name="IdCinema" />
+          </Key>
+          <Property Name="IdCinema" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Nb_Places" Type="int" Nullable="false" />
+          <Property Name="Emplacement" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Emplacement">
+          <Key>
+            <PropertyRef Name="IdPlace" />
+          </Key>
+          <Property Name="IdPlace" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Adresse" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Movie">
+          <Key>
+            <PropertyRef Name="IdFilm" />
+          </Key>
+          <Property Name="IdFilm" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Synopsis" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Producer" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Poster" Type="image" />
+          <Property Name="Category" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Movie_category">
+          <Key>
+            <PropertyRef Name="IdMovieCategory" />
+          </Key>
+          <Property Name="IdMovieCategory" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Projection">
+          <Key>
+            <PropertyRef Name="IdProjectiondatetime" />
+          </Key>
+          <Property Name="IdProjectiondatetime" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LangVersion" Type="nvarchar" MaxLength="4" Nullable="false" />
+          <Property Name="MovieId" Type="int" Nullable="false" />
+          <Property Name="CinemaId" Type="int" Nullable="false" />
+          <Property Name="DateHeure" Type="smalldatetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Reservation">
+          <Key>
+            <PropertyRef Name="IdReservation" />
+          </Key>
+          <Property Name="IdReservation" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nbPlaces" Type="int" Nullable="false" />
+          <Property Name="Projection" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserTable">
+          <Key>
+            <PropertyRef Name="IdUser" />
+          </Key>
+          <Property Name="IdUser" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserLogin" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="UserPassword" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="IsAdmin" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Cinema__Emplacem__173876EA">
+          <End Role="Emplacement" Type="Self.Emplacement" Multiplicity="1" />
+          <End Role="Cinema" Type="Self.Cinema" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Emplacement">
+              <PropertyRef Name="IdPlace" />
+            </Principal>
+            <Dependent Role="Cinema">
+              <PropertyRef Name="Emplacement" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Movie__Category__1273C1CD">
+          <End Role="Movie_category" Type="Self.Movie_category" Multiplicity="1" />
+          <End Role="Movie" Type="Self.Movie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Movie_category">
+              <PropertyRef Name="IdMovieCategory" />
+            </Principal>
+            <Dependent Role="Movie">
+              <PropertyRef Name="Category" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Projectio__Cinem__1BFD2C07">
+          <End Role="Cinema" Type="Self.Cinema" Multiplicity="1" />
+          <End Role="Projection" Type="Self.Projection" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cinema">
+              <PropertyRef Name="IdCinema" />
+            </Principal>
+            <Dependent Role="Projection">
+              <PropertyRef Name="CinemaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Projectio__Movie__1B0907CE">
+          <End Role="Movie" Type="Self.Movie" Multiplicity="1" />
+          <End Role="Projection" Type="Self.Projection" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Movie">
+              <PropertyRef Name="IdFilm" />
+            </Principal>
+            <Dependent Role="Projection">
+              <PropertyRef Name="MovieId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Reservati__Proje__21B6055D">
+          <End Role="Projection" Type="Self.Projection" Multiplicity="1" />
+          <End Role="Reservation" Type="Self.Reservation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Projection">
+              <PropertyRef Name="IdProjectiondatetime" />
+            </Principal>
+            <Dependent Role="Reservation">
+              <PropertyRef Name="Projection" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Reservati__UserI__22AA2996">
+          <End Role="UserTable" Type="Self.UserTable" Multiplicity="1" />
+          <End Role="Reservation" Type="Self.Reservation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserTable">
+              <PropertyRef Name="IdUser" />
+            </Principal>
+            <Dependent Role="Reservation">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="petitPateBDDModelStoreContainer">
+          <EntitySet Name="Cinema" EntityType="Self.Cinema" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Emplacement" EntityType="Self.Emplacement" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Movie" EntityType="Self.Movie" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Movie_category" EntityType="Self.Movie_category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Projection" EntityType="Self.Projection" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Reservation" EntityType="Self.Reservation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserTable" EntityType="Self.UserTable" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Cinema__Emplacem__173876EA" Association="Self.FK__Cinema__Emplacem__173876EA">
+            <End Role="Emplacement" EntitySet="Emplacement" />
+            <End Role="Cinema" EntitySet="Cinema" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Movie__Category__1273C1CD" Association="Self.FK__Movie__Category__1273C1CD">
+            <End Role="Movie_category" EntitySet="Movie_category" />
+            <End Role="Movie" EntitySet="Movie" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Projectio__Cinem__1BFD2C07" Association="Self.FK__Projectio__Cinem__1BFD2C07">
+            <End Role="Cinema" EntitySet="Cinema" />
+            <End Role="Projection" EntitySet="Projection" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Projectio__Movie__1B0907CE" Association="Self.FK__Projectio__Movie__1B0907CE">
+            <End Role="Movie" EntitySet="Movie" />
+            <End Role="Projection" EntitySet="Projection" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Reservati__Proje__21B6055D" Association="Self.FK__Reservati__Proje__21B6055D">
+            <End Role="Projection" EntitySet="Projection" />
+            <End Role="Reservation" EntitySet="Reservation" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Reservati__UserI__22AA2996" Association="Self.FK__Reservati__UserI__22AA2996">
+            <End Role="UserTable" EntitySet="UserTable" />
+            <End Role="Reservation" EntitySet="Reservation" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="petitPateBDDModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Cinema">
+          <Key>
+            <PropertyRef Name="IdCinema" />
+          </Key>
+          <Property Name="IdCinema" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Nb_Places" Type="Int32" Nullable="false" />
+          <Property Name="Emplacement" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Emplacement1" Relationship="Self.FK__Cinema__Emplacem__173876EA" FromRole="Cinema" ToRole="Emplacement" />
+          <NavigationProperty Name="Projection" Relationship="Self.FK__Projectio__Cinem__1BFD2C07" FromRole="Cinema" ToRole="Projection" />
+        </EntityType>
+        <EntityType Name="Emplacement">
+          <Key>
+            <PropertyRef Name="IdPlace" />
+          </Key>
+          <Property Name="IdPlace" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Adresse" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Cinema" Relationship="Self.FK__Cinema__Emplacem__173876EA" FromRole="Emplacement" ToRole="Cinema" />
+        </EntityType>
+        <EntityType Name="Movie">
+          <Key>
+            <PropertyRef Name="IdFilm" />
+          </Key>
+          <Property Name="IdFilm" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Synopsis" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Producer" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Poster" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Category" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Movie_category" Relationship="Self.FK__Movie__Category__1273C1CD" FromRole="Movie" ToRole="Movie_category" />
+          <NavigationProperty Name="Projection" Relationship="Self.FK__Projectio__Movie__1B0907CE" FromRole="Movie" ToRole="Projection" />
+        </EntityType>
+        <EntityType Name="Movie_category">
+          <Key>
+            <PropertyRef Name="IdMovieCategory" />
+          </Key>
+          <Property Name="IdMovieCategory" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Movie" Relationship="Self.FK__Movie__Category__1273C1CD" FromRole="Movie_category" ToRole="Movie" />
+        </EntityType>
+        <EntityType Name="Projection">
+          <Key>
+            <PropertyRef Name="IdProjectiondatetime" />
+          </Key>
+          <Property Name="IdProjectiondatetime" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LangVersion" Type="String" MaxLength="4" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MovieId" Type="Int32" Nullable="false" />
+          <Property Name="CinemaId" Type="Int32" Nullable="false" />
+          <Property Name="DateHeure" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Cinema" Relationship="Self.FK__Projectio__Cinem__1BFD2C07" FromRole="Projection" ToRole="Cinema" />
+          <NavigationProperty Name="Movie" Relationship="Self.FK__Projectio__Movie__1B0907CE" FromRole="Projection" ToRole="Movie" />
+          <NavigationProperty Name="Reservation" Relationship="Self.FK__Reservati__Proje__21B6055D" FromRole="Projection" ToRole="Reservation" />
+        </EntityType>
+        <EntityType Name="Reservation">
+          <Key>
+            <PropertyRef Name="IdReservation" />
+          </Key>
+          <Property Name="IdReservation" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nbPlaces" Type="Int32" Nullable="false" />
+          <Property Name="Projection" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Projection1" Relationship="Self.FK__Reservati__Proje__21B6055D" FromRole="Reservation" ToRole="Projection" />
+          <NavigationProperty Name="UserTable" Relationship="Self.FK__Reservati__UserI__22AA2996" FromRole="Reservation" ToRole="UserTable" />
+        </EntityType>
+        <EntityType Name="UserTable">
+          <Key>
+            <PropertyRef Name="IdUser" />
+          </Key>
+          <Property Name="IdUser" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserLogin" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserPassword" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsAdmin" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Reservation" Relationship="Self.FK__Reservati__UserI__22AA2996" FromRole="UserTable" ToRole="Reservation" />
+        </EntityType>
+        <Association Name="FK__Cinema__Emplacem__173876EA">
+          <End Role="Emplacement" Type="Self.Emplacement" Multiplicity="1" />
+          <End Role="Cinema" Type="Self.Cinema" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Emplacement">
+              <PropertyRef Name="IdPlace" />
+            </Principal>
+            <Dependent Role="Cinema">
+              <PropertyRef Name="Emplacement" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Projectio__Cinem__1BFD2C07">
+          <End Role="Cinema" Type="Self.Cinema" Multiplicity="1" />
+          <End Role="Projection" Type="Self.Projection" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cinema">
+              <PropertyRef Name="IdCinema" />
+            </Principal>
+            <Dependent Role="Projection">
+              <PropertyRef Name="CinemaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Movie__Category__1273C1CD">
+          <End Role="Movie_category" Type="Self.Movie_category" Multiplicity="1" />
+          <End Role="Movie" Type="Self.Movie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Movie_category">
+              <PropertyRef Name="IdMovieCategory" />
+            </Principal>
+            <Dependent Role="Movie">
+              <PropertyRef Name="Category" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Projectio__Movie__1B0907CE">
+          <End Role="Movie" Type="Self.Movie" Multiplicity="1" />
+          <End Role="Projection" Type="Self.Projection" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Movie">
+              <PropertyRef Name="IdFilm" />
+            </Principal>
+            <Dependent Role="Projection">
+              <PropertyRef Name="MovieId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Reservati__Proje__21B6055D">
+          <End Role="Projection" Type="Self.Projection" Multiplicity="1" />
+          <End Role="Reservation" Type="Self.Reservation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Projection">
+              <PropertyRef Name="IdProjectiondatetime" />
+            </Principal>
+            <Dependent Role="Reservation">
+              <PropertyRef Name="Projection" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Reservati__UserI__22AA2996">
+          <End Role="UserTable" Type="Self.UserTable" Multiplicity="1" />
+          <End Role="Reservation" Type="Self.Reservation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserTable">
+              <PropertyRef Name="IdUser" />
+            </Principal>
+            <Dependent Role="Reservation">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="petitPateBDDEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Cinema" EntityType="Self.Cinema" />
+          <EntitySet Name="Emplacement" EntityType="Self.Emplacement" />
+          <EntitySet Name="Movie" EntityType="Self.Movie" />
+          <EntitySet Name="Movie_category" EntityType="Self.Movie_category" />
+          <EntitySet Name="Projection" EntityType="Self.Projection" />
+          <EntitySet Name="Reservation" EntityType="Self.Reservation" />
+          <EntitySet Name="UserTable" EntityType="Self.UserTable" />
+          <AssociationSet Name="FK__Cinema__Emplacem__173876EA" Association="Self.FK__Cinema__Emplacem__173876EA">
+            <End Role="Emplacement" EntitySet="Emplacement" />
+            <End Role="Cinema" EntitySet="Cinema" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Projectio__Cinem__1BFD2C07" Association="Self.FK__Projectio__Cinem__1BFD2C07">
+            <End Role="Cinema" EntitySet="Cinema" />
+            <End Role="Projection" EntitySet="Projection" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Movie__Category__1273C1CD" Association="Self.FK__Movie__Category__1273C1CD">
+            <End Role="Movie_category" EntitySet="Movie_category" />
+            <End Role="Movie" EntitySet="Movie" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Projectio__Movie__1B0907CE" Association="Self.FK__Projectio__Movie__1B0907CE">
+            <End Role="Movie" EntitySet="Movie" />
+            <End Role="Projection" EntitySet="Projection" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Reservati__Proje__21B6055D" Association="Self.FK__Reservati__Proje__21B6055D">
+            <End Role="Projection" EntitySet="Projection" />
+            <End Role="Reservation" EntitySet="Reservation" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Reservati__UserI__22AA2996" Association="Self.FK__Reservati__UserI__22AA2996">
+            <End Role="UserTable" EntitySet="UserTable" />
+            <End Role="Reservation" EntitySet="Reservation" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="petitPateBDDModelStoreContainer" CdmEntityContainer="petitPateBDDEntities">
+          <EntitySetMapping Name="Cinema">
+            <EntityTypeMapping TypeName="petitPateBDDModel.Cinema">
+              <MappingFragment StoreEntitySet="Cinema">
+                <ScalarProperty Name="IdCinema" ColumnName="IdCinema" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Nb_Places" ColumnName="Nb_Places" />
+                <ScalarProperty Name="Emplacement" ColumnName="Emplacement" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Emplacement">
+            <EntityTypeMapping TypeName="petitPateBDDModel.Emplacement">
+              <MappingFragment StoreEntitySet="Emplacement">
+                <ScalarProperty Name="IdPlace" ColumnName="IdPlace" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Adresse" ColumnName="Adresse" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Movie">
+            <EntityTypeMapping TypeName="petitPateBDDModel.Movie">
+              <MappingFragment StoreEntitySet="Movie">
+                <ScalarProperty Name="IdFilm" ColumnName="IdFilm" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Synopsis" ColumnName="Synopsis" />
+                <ScalarProperty Name="Producer" ColumnName="Producer" />
+                <ScalarProperty Name="Poster" ColumnName="Poster" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Movie_category">
+            <EntityTypeMapping TypeName="petitPateBDDModel.Movie_category">
+              <MappingFragment StoreEntitySet="Movie_category">
+                <ScalarProperty Name="IdMovieCategory" ColumnName="IdMovieCategory" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Projection">
+            <EntityTypeMapping TypeName="petitPateBDDModel.Projection">
+              <MappingFragment StoreEntitySet="Projection">
+                <ScalarProperty Name="IdProjectiondatetime" ColumnName="IdProjectiondatetime" />
+                <ScalarProperty Name="LangVersion" ColumnName="LangVersion" />
+                <ScalarProperty Name="MovieId" ColumnName="MovieId" />
+                <ScalarProperty Name="CinemaId" ColumnName="CinemaId" />
+                <ScalarProperty Name="DateHeure" ColumnName="DateHeure" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Reservation">
+            <EntityTypeMapping TypeName="petitPateBDDModel.Reservation">
+              <MappingFragment StoreEntitySet="Reservation">
+                <ScalarProperty Name="IdReservation" ColumnName="IdReservation" />
+                <ScalarProperty Name="nbPlaces" ColumnName="nbPlaces" />
+                <ScalarProperty Name="Projection" ColumnName="Projection" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserTable">
+            <EntityTypeMapping TypeName="petitPateBDDModel.UserTable">
+              <MappingFragment StoreEntitySet="UserTable">
+                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+                <ScalarProperty Name="UserLogin" ColumnName="UserLogin" />
+                <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="IsAdmin" ColumnName="IsAdmin" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Aucun" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
