@@ -1,16 +1,18 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
+VisualStudioVersion = 12.0.30501.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{5DDB1F08-31F4-4ADE-8FD8-59E3A44FCA62}"
 	ProjectSection(SolutionItems) = preProject
 		petitPateSQLQuery1.sql = petitPateSQLQuery1.sql
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "petitPateLib.Logic", "PortableLib\petitPateLib.Logic.csproj", "{BA9B82B2-62D8-4C5C-BF8F-E43A4416CBB8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "petitPateLib.LogicTEST", "PortableLib\petitPateLib.LogicTEST.csproj", "{BA9B82B2-62D8-4C5C-BF8F-E43A4416CBB8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "petitPate.Cmd", "ConsoleApplication1\petitPate.Cmd.csproj", "{805E1624-67E5-4FB7-BFB5-4FA6D8961107}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "petitPateLib.Logic", "petitPateLib.Logic\petitPateLib.Logic.csproj", "{DB67943F-1010-4FEF-B496-539E68A58E3D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -26,6 +28,10 @@ Global
 		{805E1624-67E5-4FB7-BFB5-4FA6D8961107}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{805E1624-67E5-4FB7-BFB5-4FA6D8961107}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{805E1624-67E5-4FB7-BFB5-4FA6D8961107}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DB67943F-1010-4FEF-B496-539E68A58E3D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB67943F-1010-4FEF-B496-539E68A58E3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB67943F-1010-4FEF-B496-539E68A58E3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB67943F-1010-4FEF-B496-539E68A58E3D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
