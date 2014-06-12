@@ -13,18 +13,19 @@ namespace petitPate.Cmd
         static void Main(string[] args)
         {
 
-            List<String> listeDesCinemas = new List<String>();
+
+            var monPathe = new PetitPate();
             
-            listeDesCinemas = Cinemas.ObtenirListeCinemas(); 
+            var c = monPathe.GetCinemaByName("rex 1");
 
-            // print a set of column headers
-            Console.WriteLine("Id       Nom             Nb places       Adresse                 Telephone");
-            Console.WriteLine("---      ------------    ------------    ------------------      ------------");
+            Console.WriteLine(c.Name);
+            Console.WriteLine(c.ToString());
+            Console.WriteLine(c);
+            Console.ReadKey();
 
-            listeDesCinemas.ForEach(item => Console.WriteLine(item));
 
-            Console.WriteLine("Appuyer sur une touche pour quitter...");
-            Console.ReadLine();
+
+
         }
 
     }
