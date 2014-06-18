@@ -10,26 +10,28 @@ namespace petitPateLib.Logic
 
     
     [ServiceContract]
-    public interface IPetitPate
+    public interface IPetitPateCinema
     {
         [OperationContract]Cinema GetCinemaByName(string name);
-
+        [OperationContract]List<Cinema> GetAllCinemas();
     }
+
+
+
     /// <summary>
     /// Classe de logique
     /// </summary>
-    public class PetitPate : IPetitPate
+    public class PetitPateCinema : IPetitPateCinema
     {
         /// <summary>
-        /// Docuemdsfgsdfgsdfg
+        /// Classe pour récupérer un cinéma par rapprot à son nom
         /// </summary>
-        /// <param name="name">sdfgsdfgsdgfsfg</param>
+        /// <param name="name">name</param>
         /// <returns>null si pas trouvé</returns>
         public Cinema GetCinemaByName(string name)
         {
             Cinema c = null;
             
-
 
             if (!string.IsNullOrWhiteSpace(name))
             {
@@ -39,12 +41,26 @@ namespace petitPateLib.Logic
 
                 var c2 = from z in ctx.Cinema
                          where z.Emplacement1.Adresse.Equals(name)
-                         select z;
-
+                         select z;                
                 
             }
 
             return c;
+        }
+
+        /// <summary>
+        /// Classe pour récupérer la lsite des cinémas avec leurs infos
+        /// </summary>
+        /// <param name="name">aucun</param>
+        /// <returns>null si pas trouvé</returns>
+        public List<Cinema> GetAllCinemas()
+        {
+
+            var ctx = new petitPateBDDEntities();
+            List<Cinema> listeCinemas = ctx.Cinema.ToList();
+
+            return listeCinemas;
+
         }
             
     }

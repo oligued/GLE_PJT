@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace petitPateLib.Logic
 {
-    public partial class Cinema
+    public partial class Movie
     {
         public override string ToString()
         {
-            return this.Name;
+            return this.Title;
         } 
     }
 }

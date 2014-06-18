@@ -53,7 +53,10 @@
     <Compile Include="Cinema.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Class1.cs" />
+    <Compile Include="IntefacePojection.cs" />
+    <Compile Include="IntefaceMovie.cs" />
+    <Compile Include="IntefaceEmplacement.cs" />
+    <Compile Include="IntefaceCinema.cs" />
     <Compile Include="Emplacement.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -78,6 +81,8 @@
     <Compile Include="Movie_category.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="PartialMovie.cs" />
+    <Compile Include="PartialEmplacement.cs" />
     <Compile Include="PartialCinema.cs" />
     <Compile Include="Projection.cs">
       <DependentUpon>Model1.tt</DependentUpon>

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace petitPateLib.Logic
 {
-    public partial class Cinema
+    public partial class Emplacement
     {
         public override string ToString()
         {
