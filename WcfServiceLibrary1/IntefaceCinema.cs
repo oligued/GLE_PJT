@@ -8,12 +8,14 @@ using System.ServiceModel;
 namespace petitPateLib.Logic
 {
 
-    
+
     [ServiceContract]
     public interface IPetitPateCinema
     {
-        [OperationContract]Cinema GetCinemaByName(string name);
-        [OperationContract]List<Cinema> GetAllCinemas();
+        [OperationContract]
+        Cinema GetCinemaByName(string name);
+        [OperationContract]
+        List<Cinema> GetAllCinemas();
     }
 
 
@@ -31,22 +33,21 @@ namespace petitPateLib.Logic
         public Cinema GetCinemaByName(string name)
         {
             Cinema c = null;
-            
+
 
             if (!string.IsNullOrWhiteSpace(name))
             {
-
                 using (var ctx = new petitPateBDDEntities())
                 {
+
+                    ctx.Configuration.ProxyCreationEnabled = false;
                     c = ctx.Cinema.FirstOrDefault(x => x.Name.Equals(name));
 
                     var c2 = from z in ctx.Cinema
                              where z.Emplacement1.Adresse.Equals(name)
-                             select z;  
+                             select z;
                 }
 
-              
-                
             }
 
             return c;

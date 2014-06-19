@@ -14,6 +14,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "petitPate.Cmd", "ConsoleApp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "petitPateLib.Logic", "petitPateLib.Logic\petitPateLib.Logic.csproj", "{2EF6E4BC-D56E-4743-B581-6386257A9C42}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WcfServiceLibrary1", "WcfServiceLibrary1\WcfServiceLibrary1.csproj", "{CF990FB0-08B7-418E-853A-0F97BACDF3A5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,6 +34,10 @@ Global
 		{2EF6E4BC-D56E-4743-B581-6386257A9C42}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2EF6E4BC-D56E-4743-B581-6386257A9C42}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2EF6E4BC-D56E-4743-B581-6386257A9C42}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF990FB0-08B7-418E-853A-0F97BACDF3A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF990FB0-08B7-418E-853A-0F97BACDF3A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF990FB0-08B7-418E-853A-0F97BACDF3A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF990FB0-08B7-418E-853A-0F97BACDF3A5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
