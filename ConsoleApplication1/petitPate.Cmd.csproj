@@ -32,7 +32,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -46,10 +53,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\PortableLib\petitPateLib.Logic.csproj">
-      <Project>{ba9b82b2-62d8-4c5c-bf8f-e43a4416cbb8}</Project>
+    <ProjectReference Include="..\petitPateLib.Logic\petitPateLib.Logic.csproj">
+      <Project>{2ef6e4bc-d56e-4743-b581-6386257a9c42}</Project>
       <Name>petitPateLib.Logic</Name>
     </ProjectReference>
   </ItemGroup>

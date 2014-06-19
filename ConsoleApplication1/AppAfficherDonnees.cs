@@ -13,18 +13,37 @@ namespace petitPate.Cmd
         static void Main(string[] args)
         {
 
-            List<String> listeDesCinemas = new List<String>();
+
+            var monCinema = new PetitPateCinema();
+            var monFilm = new PetitPateMovie();
             
-            listeDesCinemas = Cinemas.ObtenirListeCinemas(); 
+            //var c = monPathe.GetCinemaByName("rex 1");
 
-            // print a set of column headers
-            Console.WriteLine("Id       Nom             Nb places       Adresse                 Telephone");
-            Console.WriteLine("---      ------------    ------------    ------------------      ------------");
+            List<Cinema> listAllCinemas = monCinema.GetAllCinemas();
+            List<Movie> listAllMovies = monFilm.GetAllMovies();
 
-            listeDesCinemas.ForEach(item => Console.WriteLine(item));
+            Console.WriteLine("Liste des cinemas (nom, nb de places, emplacement, adresse, tél.):");
+            Console.WriteLine("--------------------------------------------------------------------");
 
-            Console.WriteLine("Appuyer sur une touche pour quitter...");
-            Console.ReadLine();
+            foreach (Cinema unCinema in listAllCinemas)
+            {
+                Console.WriteLine(unCinema.ToString() + " " + unCinema.Nb_Places + " " + unCinema.Emplacement1.Name + unCinema.Emplacement1.Adresse + unCinema.Emplacement1.Phone);
+            }
+
+            Console.WriteLine("*******************************************************************");
+            Console.WriteLine(" ");
+
+            Console.WriteLine("Liste des films à l'affiche(type, synposis, poducteur, categorie.):");
+            Console.WriteLine("--------------------------------------------------------------------");
+
+            foreach (Movie unFilm in listAllMovies)
+            {
+                Console.WriteLine(unFilm.Title + ": " + unFilm.Synopsis + " " + unFilm.Producer + " " + unFilm.Movie_category.Title + " ");
+                Console.WriteLine(" ");
+                Console.WriteLine(" ");
+            }
+
+            Console.ReadKey();
         }
 
     }

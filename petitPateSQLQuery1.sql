@@ -85,7 +85,7 @@ magna aliqua."',
 'Monsieur Jean LeProd',
  *,
  1
- from openrowset(bulk N'Z:\ProjetGLE\image1.jpg', single_blob) as Poster
+ from openrowset(bulk N'C:\TEMP\image1.jpg', single_blob) as Poster
  GO
 
 
@@ -105,7 +105,7 @@ la faveur d’une extraction, Kancel kidnappe le flic. Il a 96 heures pour
  'Frédéric Schoendoerffer',
  *,
  2
- from openrowset(bulk N'Z:\ProjetGLE\image2.jpg', single_blob) as Poster
+ from openrowset(bulk N'C:\TEMP\image2.jpg', single_blob) as Poster
  GO
 
 insert into Emplacement (Name, Adresse, Phone) values ('Vevey','Rue du milieu 1','0211231111');
